@@ -136,6 +136,9 @@ CSS can also set the  background of an element to an image with
 the background-image property.
 
 # The box model
+
+> Box dimensions, borders, padding, and margin.
+
 The box model comprises a set of properties used to create space
 around and between HTML elements.
 
@@ -165,3 +168,19 @@ dictates how HTML will render content that overflows its parent's
 content area.
 
 The visibility property can hide or show elements.
+
+> default box model: box dimensions are affected by border thickness
+and padding.
+
+
+In the default box model, box dimensions are affected by border
+thickness and padding.
+
+The box-sizing property controls the box model used by the browser.
+
+The default value of the box-sizing property is content-box.
+
+The value for the new box model is border-box.
+
+The border-box model is not affected by border thickness or padding.
+

@@ -224,3 +224,6 @@ clear property.
 
 When combined with an understanding of the box model, positioning
 can create visually appealing web pages.
+
+# exercises:
+redo projects Broadway and DaviesBurgers

@@ -1,0 +1,47 @@
+1
+Let's start by making this bunch of divs into a grid. Set the display
+property of the div with class grid to the value necessary to make it
+a CSS grid.
+
+2
+Structure the grid to have four columns — the first two each taking
+up 25% of the total width, the third column taking up two-thirds of
+the remaining space, and the last column taking up the last third of
+the remaining space.
+
+3
+Give the grid two rows, both 200px in size.
+
+4
+Put a 10px gap in between the rows of the grid and a 15px gap in between
+the columns of the grid.
+
+5 
+Make the box with class a take up the first two columns of the grid. 
+
+6
+Make the box with class a take up the first two rows of the grid. 
+
+
+==hints
+
+1
+In style.css, add a display property to the .grid element and set it to grid.
+
+2
+Use grid-template-columns with 25% as the first two parameters, then use fr
+to split the remaining two columns appropriately.
+
+3
+You can use the grid-template-rows property to do this.
+no comma
+
+4
+You can use the grid-row-gap property to put a gap between rows and the
+grid-column-gap between columns.
+
+5
+It should start at column 1 and span 2 columns.
+
+6
+It should start at row 1 and end before row 3.

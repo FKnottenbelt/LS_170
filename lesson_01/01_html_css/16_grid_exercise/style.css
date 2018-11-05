@@ -3,6 +3,9 @@
   height: 500px;
   width: 500px;
   display: grid;
+  grid-template-columns: 25% 25% 2fr 1fr;
+  grid-template-rows: 200px 200px;
+  grid-gap: 10px 15px;
 }
 
 .box {
@@ -10,4 +13,8 @@
   color: black;
   border-radius: 5px;
   border: 2px dodgerblue solid;
+}
+
+.a {
+  grid-row: 1 / span 2;
 }

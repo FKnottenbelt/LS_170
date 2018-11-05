@@ -2,7 +2,12 @@
 Lauch School Backend Course Work - 170 - Web Development
 
 # Curriculum Summary
-This course will cover server side development from first principles. We won't use any frameworks, and will focus on the HTTP request/response cycle. After this course, you'll have a good understanding of HTTP, the protocol behind the internet. You'll also have built your first dynamic web application from scratch. Finally, we'll talk about various deployment options, and deploy the application to Heroku.
+This course will cover server side development from first principles.
+We won't use any frameworks, and will focus on the HTTP request/response
+cycle. After this course, you'll have a good understanding of HTTP,
+the protocol behind the internet. You'll also have built your first
+dynamic web application from scratch. Finally, we'll talk about various
+deployment options, and deploy the application to Heroku.
 
 # Detailed Syllabus
 The HTTP Protocol

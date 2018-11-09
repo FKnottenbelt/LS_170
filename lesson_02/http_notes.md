@@ -22,6 +22,14 @@ curl -X GET "https://www.reddit.com/" -m 30 -v -A 'User-Agent: Mozilla/5.0 (Maci
 
 nb: looks like a lot of the time spooling to html might make more sense
 
+see `curl --help`:
+`-X` command following
+`-m` max-time in seconds allowed for transfer
+`-v` verbose
+`-A` user agent
+
+`-d` data
+
 > HTTP GET requests
 
 GET requests are used to retrieve a resource, and most links are GETs.
@@ -31,3 +39,35 @@ HTML and that HTML references other resources, your browser
 will automatically request those referenced resources. A pure
 HTTP tool will not.
 
+> POST Requests
+
+curl blackjack looks like it doesn't work. But it is is stopping
+after the first response with the 'redirect' to
+http://al-blackjack.herokuapp.com/bet (and an empty body)
+See also to code 303.
+
+Normally your browser will automatically go on the the /bet
+(send new GET request) and you will get the bet page as a response to
+that.
+
+Note: If you're using some other HTTP tool, like Insomnia or Postman,
+you may have to uncheck `automatically follow redirects` in order to see
+the Location response header. (it will not stop, but behave like
+browser)
+
+See all this in the inspector under network.
+
+> know:
+
+you should be comfortable with:
+
+    using the inspector to view HTTP requests
+    making GET/POST requests with an HTTP tool
+
+The most important components to understand about an HTTP request
+are:
+
+    HTTP method
+    path
+    headers
+    message body (for POST requests)

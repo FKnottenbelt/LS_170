@@ -1,0 +1,31 @@
+$ curl -X POST "http://al-blackjack.herokuapp.com/new_player" -d "player_name=Albert" -m 30 -v > curl_blackjack.txt
+Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--       0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 34.202.247.40...
+* TCP_NODELAY set
+* Connected to al-blackjack.herokuapp.com (34.202.247.40) port 80 (#0)
+> POST /new_player HTTP/1.1
+> Host: al-blackjack.herokuapp.com
+> User-Agent: curl/7.53.1
+> Accept: */*
+> Content-Length: 18
+> Content-Type: application/x-www-form-urlencoded
+>
+} [18 bytes data]
+* upload completely sent off: 18 out of 18 bytes
+< HTTP/1.1 303 See Other
+< Date: Fri, 09 Nov 2018 21:04:25 GMT
+< Connection: keep-alive
+< X-Frame-Options: SAMEORIGIN
+< X-Xss-Protection: 1; mode=block
+< X-Content-Type-Options: nosniff
+< Content-Type: text/html;charset=utf-8
+< Location: http://al-blackjack.herokuapp.com/bet
+< Content-Length: 0
+< Set-Cookie: rack.session=BAh7B0kiD3Nlc3Npb25faWQGOgZFRiJFODljMWUzZWU4NDQyNzJhYWIzOGMw%0AYjA2NGM0Y2EyNDQzZjZlMTliYTkwNGIzOWZlNGI1MTcwZThlMjA0ZjAyZkki%0AEHBsYXllcl9uYW1lBjsARkkiC0FsYmVydAY7AFQ%3D%0A--da73c92bba7ba9871b47ad8886809e033212ee23; path=/; HttpOnly
+< Server: thin 1.5.0 codename Knife
+< Via: 1.1 vegur
+<
+100    18    0     0  100    18      0    261 --:--:-- --:--:-- --:--:--   260
+* Connection #0 to host al-blackjack.herokuapp.com left intact

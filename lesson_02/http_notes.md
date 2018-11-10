@@ -71,3 +71,13 @@ are:
     path
     headers
     message body (for POST requests)
+
+HTTP is nothing more than an agreement in
+the form of formatted text that dictates how a client and server
+communicate.
+
+The most important parts of an HTTP response are:
+
+    status code
+    headers
+    message body, which contains the raw response data

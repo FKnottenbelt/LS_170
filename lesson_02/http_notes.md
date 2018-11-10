@@ -111,6 +111,10 @@ stored on the client, and it is used as a "key" to the session
 data stored server side. That's how web applications work around
 the statelessness of HTTP.
 
-The id sent with a session is unique and expires in a relatively short
-time. In this context, it means you'll be required to login again after the
-session expires. If we log out, the session id information is gone
+> AJAX
+
+AJAX requests are just like normal requests: they are sent to the server
+with all the normal components of an HTTP request, and the server handles
+them like any other request. The only difference is that instead of the
+browser refreshing and processing the response, the response is processed
+by a callback function, which is usually some client-side JavaScript code.

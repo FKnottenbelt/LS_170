@@ -81,3 +81,36 @@ The most important parts of an HTTP response are:
     status code
     headers
     message body, which contains the raw response data
+
+Session data is generated and stored on the server-side and the `session
+id` is sent to the client in the form of a cookie. Web applications take
+advantage of this to mimic a stateful experience on the web.
+
+> state
+
+mimic state with:
+- `session indentifier`:
+  having the server send some form of a unique token to the client.
+  Whenever a client makes a request to that server, the client appends
+  this token as part of the request, allowing the server to identify clients.
+  In web development, we call this unique token that gets passed back and
+  forth the session identifier.
+
+  The id sent with a session is unique and expires in a relatively short
+  time. In this context, it means you'll be required to login again after the
+  session expires. If we log out, the session id information is gone
+
+> Where is the session data stored?
+
+The simple answer is: on the server somewhere. Sometimes, it's
+just stored in memory, while other times, it could be stored in
+some persistent storage, like a database or key/value store. Where
+the session data is actually is not too important right now. The
+most important thing is to understand that the session id is
+stored on the client, and it is used as a "key" to the session
+data stored server side. That's how web applications work around
+the statelessness of HTTP.
+
+The id sent with a session is unique and expires in a relatively short
+time. In this context, it means you'll be required to login again after the
+session expires. If we log out, the session id information is gone

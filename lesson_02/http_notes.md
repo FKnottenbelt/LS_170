@@ -86,6 +86,18 @@ Session data is generated and stored on the server-side and the `session
 id` is sent to the client in the form of a cookie. Web applications take
 advantage of this to mimic a stateful experience on the web.
 
+Developing and securing a web application is fragile and problematic and it's
+mostly due to working with HTTP.
+
+Understanding HTTP and things like GET, POST, sessions, cookies and what
+it means to be "stateless" are vital. Understanding the basics of HTTP
+means you know what is happening "behind the scenes" when you build a web
+application.
+
+Learning about security means you're aware of threats like XSS,
+session hijacking and the countermeasures you need to guard against
+them.
+
 > state
 
 mimic state with:
@@ -118,3 +130,75 @@ with all the normal components of an HTTP request, and the server handles
 them like any other request. The only difference is that instead of the
 browser refreshing and processing the response, the response is processed
 by a callback function, which is usually some client-side JavaScript code.
+
+> Security messures
+
+**HTTPS**
+With HTTPS every request/response is encrypted before being
+transported on the network.
+HTTPS sends messages through a cryptographic protocol called `TLS`
+for encryption. Earlier versions of HTTPS used `SSL` or `Secure
+Sockets Layer` until TLS was developed. These cryptographic
+protocols use `certificates` to communicate with remote servers and
+exchange security keys before data encryption happens.
+
+**Same-origin policy**
+The same-origin policy is an important concept that permits
+resources originating from the same site to access each other with
+no restrictions, but prevents access to documents/resources on
+different sites. Stated differently, it prevents scripts from one
+site from manipulating documents from another site.
+
+Documents in the same origin must have the same protocol, hostname and port
+number.
+
+The same origin policy pertains to accessing the contents of files,
+and not linking. You are always free to link to any URL.
+
+The same-origin policy is an important guard against session
+hijacking attacks and serves as a cornerstone of web application security.
+
+**Countermeasures for Session Hijacking**
+- resetting sessions (a successful login must render an old session id
+  invalid and create a new one)
+- setting an expiration time on sessions
+- use HTTPS to protect the session id
+
+**Countermeasures for cross-site scripting (XSS)**
+- Sanitize user input. Eliminate problematic input, such
+  as script tags, or disallowing HTML and JavaScript input
+  altogether in favor of a safer format, like Markdown.
+- escape all user input data when displaying it. If you do need to
+  allow users to input HTML and JavaScript, then when you print it out,
+  make sure to escape it (with [HTML entities](http://entitycode.com/#math-content))
+  so that the browser does not interpret it as code.
+
+> Security threats
+
+**Session Hijacking**
+If a hacker gets hold of the users session Id (often stored as a string in a
+cookie stored on the users computer), both the attacker and the user now
+share the same session and both can access the web application.
+
+**Cross-Site Scripting (XSS)**
+This type of attack happens when you allow users to input HTML or
+JavaScript that ends up being displayed by the site directly.
+
+If the server side code doesn't do any sanitization of input, the
+user input will be injected into the page contents, and **the browser
+will interpret the HTML and JavaScript and execute it**.
+
+example: in a comment a attacker could summit
+```html
+hello world &lt;script&gt;alert("hello world...")&lt;script&gt;
+```
+(which will only make a alert message pop-up, but you can see the potential)
+
+NB:  `&lt;` is `<`,  `&lt;` is `>`. See [HTML entities](http://entitycode.com/#math-content)
+
+> CORS
+
+`CORS` is a mechanism that allows resources from one domain to be requested
+from another domain, bypassing the same-origin policy. CORS works
+by adding new HTTP headers, which allow servers to serve resources
+to permitted origin domains.

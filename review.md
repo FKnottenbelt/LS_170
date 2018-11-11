@@ -1,2 +1,3 @@
 # HTTP
-see /170/lesson_02/http_notes.md
+see /170/lesson_02/01_http/http_notes.md
+

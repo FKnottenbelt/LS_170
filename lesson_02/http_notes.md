@@ -202,3 +202,26 @@ NB:  `&lt;` is `<`,  `&lt;` is `>`. See [HTML entities](http://entitycode.com/#m
 from another domain, bypassing the same-origin policy. CORS works
 by adding new HTTP headers, which allow servers to serve resources
 to permitted origin domains.
+
+> Summary
+HTTP is a text-based protocol that is the foundation of the web.
+
+There are two parties involved in HTTP: the client and the server.
+
+A complete HTTP interaction involves a request which is sent from the
+client to the server, and a response which is sent from the server to
+the client.
+
+A request is sent to a host and must include a method, a path, and a
+Host header. It may also include parameters, additional headers, or
+a body.
+
+GET is the HTTP method used to retrieve a resource from the server.
+
+A response must include a status. It may also include headers or a
+body.
+
+A 200 OK status in a response means the request was successful.
+
+Modern web browsers include debugging tools that allow you to inspect
+the HTTP activity of a page.

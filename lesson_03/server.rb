@@ -1,6 +1,6 @@
 require 'socket'
 
-server = TCPserver.new("localhost", 8080)
+server = TCPServer.new("localhost", 8080)
 loop do
   client = server.accept
 
@@ -11,4 +11,6 @@ loop do
   client.close
 end
 
-client.puts "HTTP/1.1 200 OK\r\n\r\n"
+# nb: replace localhost with droplet IP and port
+# with a open tcp port when running on droplet.
+# in browser go to http://<ip>:<port>

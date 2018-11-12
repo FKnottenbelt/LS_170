@@ -53,3 +53,6 @@ Note: Unnecessary use of -X or --request, GET is already inferred.
 * Connection #0 to host www.google.com left intact
 ```
 and the body in telnet.html
+
+
+NB: telnet does work on the linux droplet

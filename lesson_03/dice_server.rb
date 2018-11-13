@@ -1,18 +1,12 @@
 require 'socket'
 
 def parse_request(request)
-  input = request.split
-
-  http_method = input.shift
-  path = input.first.split('?').shift
-
-  param_array = input.first.split('?').last
-  param_array = param_array.split('&')
+  http_method, path_and_params, version = request.split
+  path, all_parameters = path_and_params.split('?')
 
   params = {}
-  param_array.each do |param|
-    key = param.split('=').first
-    value = param.split('=').last
+  all_parameters.split('&').each do |param|
+    key, value = param.split('=')
     params[key] = value
   end
 

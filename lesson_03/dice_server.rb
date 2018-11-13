@@ -3,9 +3,10 @@ require 'socket'
 def parse_request(request)
   http_method, path_and_params, version = request.split
   path, all_parameters = path_and_params.split('?')
+  param_array = (!!all_parameters ? all_parameters.split('&') : [])
 
   params = {}
-  all_parameters.split('&').each do |param|
+  param_array.each do |param|
     key, value = param.split('=')
     params[key] = value
   end

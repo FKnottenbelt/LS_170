@@ -11,8 +11,7 @@ def parse_request(request)
     params[key] = value
   end
 
-  request = Struct.new(:method, :path, :params)
-  request = request.new(http_method, path, params)
+  [http_method, path, params]
 end
 
 server = TCPServer.new("localhost", 8080)
@@ -28,14 +27,14 @@ loop do
   client.puts "HTTP/1.1 200 ok"
   client.puts "Content-Type: text/plain\r\n\r\n"
 
-  request = parse_request(request_line)
+  http_method, path, params = parse_request(request_line)
 
   # first line of request into response (display in browser)
   client.puts request_line
 
   # our program (into response (display in browser))
-  sides = request.params["sides"].to_i
-  rolls = request.params["rolls"].to_i
+  sides = params["sides"].to_i
+  rolls = params["rolls"].to_i
   rolls.times { client.puts rand(1..sides) }
 
   # close connection

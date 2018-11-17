@@ -1,6 +1,10 @@
-require 'pry'
-
-# Binding scope: it's method, passed in vars and self
+# Looking at the Kernel#binding object as enountered in lesson 3
+# "growing your framework with Rack part 4":
+#
+# see /170/notes/binding_and_erb.md for conlusions
+#
+###############################################################
+# Kernel#binding scope: its method, passed in vars and self
 class Animal
   attr_accessor :name
 
@@ -34,7 +38,7 @@ cat.talk
 
 puts ("####################################################")
 
-# Binding scope:  but no access to other methods
+# Kernel#binding scope:  but no access to other methods
 
 class SmartAnimal
   attr_accessor :name
@@ -115,6 +119,10 @@ puts ("####################################################")
 # Bindings that points to itself, so we can easily extend any object to
 # provide ERB with a Binding.
 
+# To enable ERB to use the variables from a separate object, we must first
+# ensure that it has a public method to provide a Binding. We can then get
+# a Binding at any later point:
+
 class ShoppingList
   attr_accessor :items
 
@@ -142,12 +150,54 @@ template = %(
 
 list = ShoppingList.new(items)
 renderer = ERB.new(template)
+
+puts eval("items", list.get_binding)
+
 puts output = renderer.result(list.get_binding)
+
+# =>
+# bread
+# milk
+
+#   <html>
+#     <body>
+#       <h2>Shopping List</h2>
+#       <p><em>bread, milk</em></p>
+#     </body>
+#   </html>
+
+puts ("####################################################")
+
+# If the ERB object is enclosed in a method, and we want it to use the
+# variables of the host object, we get a Binding for the host like this:
+
+erb_template = %(
+  <html>
+    <body>
+      <h2 style="color: red"><%= message %></h2>
+    </body>
+  </html>
+)
+
+def erb(filename, local = {}, template)
+  b = binding
+
+  puts eval("message", b) # nil, since message is assigned anything
+
+  message = local[:message]
+
+  puts eval("message", b) # Hello World!
+
+  content = template
+  ERB.new(content).result(b)
+end
+
+puts erb('index', {message: 'Hello World!'}, erb_template)
 
 # =>
   # <html>
   #   <body>
-  #     <h2>Shopping List</h2>
-  #     <p><em>bread, milk</em></p>
+  #     <h2 style="color: red">Hello World!</h2>
   #   </body>
   # </html>
+

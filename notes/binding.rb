@@ -201,3 +201,21 @@ puts erb('index', {message: 'Hello World!'}, erb_template)
   #   </body>
   # </html>
 
+puts ("####################################################")
+
+# But just defining the binding at the last moment works just as well:
+
+def erb(filename, local = {}, template)
+  message = local[:message]
+
+  content = template
+  ERB.new(content).result(binding)
+end
+
+puts erb('index', {message: 'Hello World!'}, erb_template)
+# =>
+  # <html>
+  #   <body>
+  #     <h2 style="color: red">Hello World!</h2>
+  #   </body>
+  # </html>

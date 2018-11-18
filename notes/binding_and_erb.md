@@ -30,6 +30,8 @@ specific binding
 
 If the .result happens `in a method` you have to get a binding to
 the method scope (`b = binding, ERB.new(content).result(b)`)
+But just defining the binding at the last possible moment works at well:
+`ERB.new(content).result(binding)`
 
 if the .result needs to use the variables from `a separate object`,
 you need to specify a binding method in the class:

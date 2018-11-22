@@ -1,0 +1,12 @@
+<html>
+  <body>
+    <h2>File list</h2>
+      <%= @dir %>
+      <ul>
+        <% @files.each do |file| %>
+        <li><a href="<%= file %>"><%= file %></a></li>
+        <% end %>
+      </ul>
+  </body>
+</html>
+

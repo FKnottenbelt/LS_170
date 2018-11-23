@@ -1,3 +1,22 @@
+<head>
+  <style>
+    .sortlinks li {
+      display: inline-block;
+      margin-top: 2em;
+    }
+
+    .sortlinks a{
+       padding: 0.5em 1em;
+       background-color: lightblue;
+       border-radius: 5px;
+    }
+    .extrainfo {
+      margin-top: 5em;
+      border-top: 2px;
+      border-top-style: solid;
+    }
+  </style>
+</head>
 <html>
   <body>
     <h2>File list</h2>
@@ -7,6 +26,17 @@
         <li><a href="<%= file %>"><%= file %></a></li>
         <% end %>
       </ul>
+
+      <div class='sortlinks'>
+        <ul>
+          <li><a href="/?reverse=false">Sort ascending</a></li>
+          <li><a href="/?reverse=true">Sort descending</a></li>
+        </ul>
+      </div>
+
+      <div class='extrainfo'>
+        <%= @info %>
+      </div>
   </body>
 </html>
 

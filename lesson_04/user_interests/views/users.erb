@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+  <style>
+
+  </style>
+</head>
+
+<html>
+  <body>
+    <p>Our users!</p>
+    <%#= @users %>
+    <% @users.each do |name, details| %>
+      <p><%= name %></p>
+    <% end %>
+  </body>
+</html>
+

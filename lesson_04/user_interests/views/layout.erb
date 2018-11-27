@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+  <style>
+
+  </style>
+</head>
+<html>
+  <body>
+    <%= yield %>
+
+    <div class='stats'>
+      <p>There are <%= @users.count %> users with a total of
+      <%= count_interests %> interests.</p>
+    </div>
+
+  </body>
+</html>

@@ -11,6 +11,14 @@ helpers do
   def format_interests(interests)
     interests.join(", ")
   end
+
+  def count_interests
+    total = 0
+    @users.each do |name, details|
+      total += details[:interests].count
+    end
+    total
+  end
 end
 
 get "/" do

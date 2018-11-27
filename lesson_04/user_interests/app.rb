@@ -7,6 +7,12 @@ before do
   @users = YAML.load_file "users.yaml"
 end
 
+helpers do
+  def format_interests(interests)
+    interests.join(", ")
+  end
+end
+
 get "/" do
   redirect "/users"
 end

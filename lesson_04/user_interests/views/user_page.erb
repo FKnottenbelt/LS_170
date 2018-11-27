@@ -7,7 +7,10 @@
 
 <html>
   <body>
-    <p>Hello dear <%= @name %>!</p>
+    <h2><%= @name %>'s page</h2>
+    <%#= @users %>
+    <p>email: <%= @users[@name.to_sym][:email] %></p>
+    <p>interests: <%= format_interests(@users[@name.to_sym][:interests]) %></p>
   </body>
 </html>
 

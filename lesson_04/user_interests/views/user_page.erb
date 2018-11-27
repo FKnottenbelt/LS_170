@@ -9,8 +9,21 @@
   <body>
     <h2><%= @name %>'s page</h2>
     <%#= @users %>
-    <p>email: <%= @users[@name.to_sym][:email] %></p>
-    <p>interests: <%= format_interests(@users[@name.to_sym][:interests]) %></p>
+    <div class="user-info"></div>
+      <p>email: <%= @users[@name.to_sym][:email] %></p>
+      <p>interests: <%= format_interests(@users[@name.to_sym][:interests]) %></p>
+    </div>
+
+    <div class="other-users">
+      <h4>Other users:</h4>
+      <ul>
+        <% @users.each do |name, details| %>
+          <% next if name == @name.to_sym %>
+          <li><a href='/<%= name %>'><%= name %></a></li>
+        <% end %>
+      </ul>
+    </div>
+
   </body>
 </html>
 

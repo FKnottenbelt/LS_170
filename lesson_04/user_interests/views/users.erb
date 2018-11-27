@@ -7,11 +7,12 @@
 
 <html>
   <body>
-    <p>Our users!</p>
-    <%#= @users %>
+    <h1>Our users:</h1>
+
     <% @users.each do |name, details| %>
-      <p><%= name %></p>
+      <p><a href='/<%= name %>'><%= name %></a></p>
     <% end %>
+
   </body>
 </html>
 

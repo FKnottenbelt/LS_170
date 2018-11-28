@@ -41,3 +41,8 @@ use GET or POST.
 - The value of any input elements in the form will be sent as parameters.
 The keys of these parameters will be determined by the name attribute
 of the corresponding input element.
+
+
+> using yaml and it's hash:
+
+see 04-17 (user interests)

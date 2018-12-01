@@ -46,3 +46,7 @@ of the corresponding input element.
 > using yaml and it's hash:
 
 see 04-17 (user interests)
+
+> coding and linking in erb
+
+redo book_viewer search form

@@ -50,3 +50,7 @@ see 04-17 (user interests)
 > coding and linking in erb
 
 redo book_viewer search form
+
+> todo?
+
+add notes on making basic sinatra app?

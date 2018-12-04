@@ -10,8 +10,11 @@ group :development, :test do
   gem 'minitest'    # Capybara uses minitest
   gem 'capybara'    # duh
   gem 'rake'        # for one place testing
+  gem 'launchy'     # does not fully work, but allows saving of html
 end
 ```
+
+nb add `tmp/` to gitignore since launchy stuff will go there
 
 > files
 
@@ -33,6 +36,7 @@ class CapybaraTestCase < Minitest::Test   # capybara stuff in one place
   include Capybara::Minitest::Assertions  # using minitest asserts
 
   Capybara.app = Sinatra::Application
+  Capybara.save_path = './tmp/'
 
   def teardown
     Capybara.reset_sessions!
@@ -84,7 +88,7 @@ click_button("Save")  # value of button
 fill_in 'list_name', with: 'Test List' # list_name is name,
                                        # with is user input
 
-
+print page.html  # prints html on current page to stdout
 
     # fill_in("skill[name]", with: "Skill name")
     # fill_in("skill[description]", with: "Skill description")
@@ -129,3 +133,10 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_test.rb']
 end
 ```
+
+> save html for debug
+
+gem launchy in gemfile
+`Capybara.save_path = './tmp/'` in you capybara test class
+`save_and_open_page` in your test (will give error, but html in tmp)
+put `tmp/`  in your gitignore

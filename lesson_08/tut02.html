@@ -1,0 +1,33 @@
+<!DOCTYPE HTML> <html lang="en"> <head> <title>Bootstrap Example</title> <meta charset="utf-5"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> </head> <body> <div class="container"> <div class='jumbotron'> <center><h1>Let's Have Fun!</h1> <button id="btn1">#btn1</button> <button id="btn2">#btn2</button> <button id="btn3">#btn3</button> <button id="btn4">#btn4</button> </center> </div> <div class="row"> <div class="col-xs-3"> <div id="panel1" class="panel panel-primary"> <div class="panel-heading"> #panel1 </div> <div class="panel-body">content </div> </div> </div> <div class="col-xs-3"> <div id="panel2" class="panel panel-primary"> <div class="panel-heading"> #panel2 </div> <div class="panel-body">content </div> </div> </div> <div class="col-xs-3"> <div id="panel3" class="panel panel-primary"> <div class="panel-heading"> #panel3 </div> <div class="panel-body">content </div> </div> </div> <div class="col-xs-3"> <div id="panel4" class="panel panel-primary"> <div class="panel-heading"> #panel4 </div> <div class="panel-body">content </div> </div> </div> </div> </body> <html>
+
+<script scr='appname/jquery/jquery.js'></script>
+<script>
+  $(document).ready(function(){
+
+  // $('#btn1').html('button 1')
+  // $('#panel1').html('my <strong style="color: blue">new</strong> panel')
+
+    $('#panel1').css({ color: 'blue'})
+
+    $('#btn1').on('click', function(){
+      $('#panel1').toggle();
+    });
+
+    $('#btn2').on('mouseover', function(){
+      $('#panel2').toggle();
+    });
+
+    $('#btn3').on('click', function(){
+      $('#panel3').toggle();
+    });
+
+    $('#btn4').on('click', function(){
+      $('#panel4').toggle();
+    });
+
+    $('#btn1').on('click', function(){
+      $('#panel1 .panel-body').html('my new panel content');
+    });
+
+  });
+</script>

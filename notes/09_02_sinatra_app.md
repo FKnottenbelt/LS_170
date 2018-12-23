@@ -45,3 +45,14 @@ end
 2. run `bundle install` to install dependencies
 3. check by running ruby app.rb
 
+### Basic frontend (views)
+1. add a views directory
+2. make a layout
+3. make a home.erb
+4. serve home.erb in home route
+```
+get '/' do
+  erb :home, layout: :layout
+end
+```
+5. test it out

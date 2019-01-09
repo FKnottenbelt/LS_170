@@ -196,6 +196,41 @@ hello world &lt;script&gt;alert("hello world...")&lt;script&gt;
 
 NB:  `&lt;` is `<`,  `&lt;` is `>`. See [HTML entities](http://entitycode.com/#math-content)
 
+**Parameter misuse**
+
+Be extremely careful when accepting filenames as parameters in your
+app: query parameters or named parameters. In fact, it's best to
+avoid doing this if at all possible.
+
+A malicious user might be able to access the application's source
+code by using a carefully crafted URL:
+```
+/view?filename=../cms.rb
+```
+Or, maybe they could view the list of users and their hashed
+passwords:
+```
+/view?filename=../users.yml
+```
+It's often possible to avoid providing filenames as parameters in
+the first place. If you can use an alternative identifier for the
+filename (perhaps an index into the list of files), then there is
+less risk involved as you can avoid building a file path using
+a parameter.
+
+Another option is to run any parameters that contain filenames
+through File.basename to strip off anything other than the
+filename and extension
+
+Try to keep the following guidelines in mind while
+developing web applications:
+
+- Avoid using parameters to construct file paths if at all possible.
+- Use whitelisting to explicitly define what is allowed.
+- Try to think like a person that is attempting to alter the
+  behavior of your software. Is it possible to introduce an unexpected
+  value into the system through expected means such as parameters?
+
 > CORS
 
 `CORS` is a mechanism that allows resources from one domain to be requested

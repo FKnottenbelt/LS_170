@@ -35,7 +35,7 @@ end
 post '/monstas' do
   @name = params["name"]
   store_name('names.txt', @name)
-  'ok!'
+  redirect "/monstas?name=#{@name}"
 end
 
 # run this by simply doing $  ruby monstas_09_erb.rb

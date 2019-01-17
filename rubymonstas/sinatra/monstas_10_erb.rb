@@ -34,10 +34,19 @@ get "/monstas" do
   erb :monstas_10
 end
 
-post '/monstas' do
+post "/monstas" do
   @name = params["name"]
-  store_name('names.txt', @name)
-  session[:message] = "Successfully stored the name #{@name}."
+
+  if @name.to_s.empty?
+    session[:message] = "You need to enter a name."
+  elsif read_names.include?(@name)
+    session[:message] = "#{@name} is already included in our list."
+  else
+    store_name("names.txt", @name)
+    session[:message] = "Successfully stored the name #{@name}."
+  end
+
   redirect "/monstas?name=#{@name}"
 end
+
 

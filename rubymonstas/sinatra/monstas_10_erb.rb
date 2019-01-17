@@ -65,8 +65,10 @@ post "/monstas" do
   if validator.valid?
     store_name("names.txt", @name)
     session[:message] = "Successfully stored the name #{@name}."
+    redirect "/monstas?name=#{@name}"
   else
-    session[:message] = validator.message
+    @message = validator.message
+    erb :monstas_10
   end
 
   redirect "/monstas?name=#{@name}"

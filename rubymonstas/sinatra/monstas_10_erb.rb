@@ -12,6 +12,30 @@ def read_names
   File.readlines('names.txt')
 end
 
+class NameValidator
+  attr_reader :message
+
+  def initialize(name, names)
+    @name = name.to_s
+    @names = names
+  end
+
+  def valid?
+    validate
+    @message.nil?
+  end
+
+  private
+
+  def validate
+    if @name.empty?
+      @message = "You need to enter a name."
+    elsif @names.include?(@name)
+      @message = "#{@name} is already included in our list."
+    end
+  end
+end
+
 enable :sessions
 
 get "/" do
@@ -36,14 +60,13 @@ end
 
 post "/monstas" do
   @name = params["name"]
+  validator = NameValidator.new(@name, read_names)
 
-  if @name.to_s.empty?
-    session[:message] = "You need to enter a name."
-  elsif read_names.include?(@name)
-    session[:message] = "#{@name} is already included in our list."
-  else
+  if validator.valid?
     store_name("names.txt", @name)
     session[:message] = "Successfully stored the name #{@name}."
+  else
+    session[:message] = validator.message
   end
 
   redirect "/monstas?name=#{@name}"

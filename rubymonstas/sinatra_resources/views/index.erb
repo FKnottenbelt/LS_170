@@ -1,3 +1,6 @@
+<h1>Our members:</h1>
 <% @members.each do |member| %>
   <p><a href='/members/<%= member %>'><%= member %></a></p>
 <% end %>
+<br>
+<a href='/members/new'>New Member</a>

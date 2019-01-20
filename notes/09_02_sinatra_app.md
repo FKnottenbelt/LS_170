@@ -11,6 +11,7 @@ source "https://rubygems.org"
 
 gem "sinatra", "~>2.0.4"
 gem "sinatra-contrib"      # so we can use Sinatra::ContentFor
+                           # and the sinatra/reloader
 gem "erubis"               # auto-escape content enabled erb
 
 ruby "2.4.1"               # get same version when deployed elsewhere

@@ -27,3 +27,20 @@ Now add the new and create routes:
 
 - Make sure the success message is displayed in the show.erb view.
 
+## Exercise 5.3
+
+Next add the edit and update routes:
+
+- In the index.erb view add a link “Edit” next to each of the listed names,
+  and point it to /members/:name/edit.
+
+- Also, add the same link to the show.erb view.
+
+- On GET to /members/:name/edit display a form that PUTs to /members/:name.
+  This form has the same elements as the form on new.erb. Also, add a link
+  “Back” that goes to /members.
+
+- On PUT to /members/:name validate the given name. If the validation
+  succeeds redirect the user to /members/:name and pass a success message
+  by using the session. If the validation fails re-render the form and
+  display an error message.

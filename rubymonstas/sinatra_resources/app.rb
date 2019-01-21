@@ -28,6 +28,11 @@ def load_members
   File.readlines(members_file)
 end
 
+def valid_name?(name)
+  !(name.to_s.empty?  || @members.include?(name) ||
+    @members.include?(name + "\n"))
+end
+
 # Index: Display all members
 get '/' do
   erb :index
@@ -46,16 +51,15 @@ end
 post '/members' do
   @new_member = params[:name]
 
-  if @new_member.to_s.empty?  || @members.include?(@new_member) ||
-      @members.include?(@new_member + "\n")
-    session[:message] = 'Invalid name'
-    erb :new
-  else
+  if valid_name?(@new_member)
     file = File.join(data_path, 'members.txt')
     File.write(file, "\n#{@new_member}", mode:'a')
     session[:message] = "Added #{@new_member}"
     status 204
     redirect "/members/#{@new_member}"
+  else
+    session[:message] = 'Invalid name'
+    erb :new
   end
 
 end
@@ -66,3 +70,20 @@ get '/members/:name' do
   erb :show
 end
 
+# Edit: get member edit page
+get '/members/:name/edit' do
+  @member = params[:name]
+  erb :edit
+end
+
+# Update: edit a member
+put '/members/:old_name' do
+  if valid_name?(params[:name])
+    session[:message] = "Noted new name: #{params[:name]}"
+    redirect "/members/#{params[:old_name]}"
+  else
+    session[:message] = 'Invalid name'
+    @member = params[:old_name]
+    erb :edit
+  end
+end

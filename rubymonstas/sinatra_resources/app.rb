@@ -87,3 +87,14 @@ put '/members/:old_name' do
     erb :edit
   end
 end
+
+# Delete: get page to delete member
+get '/members/:name/delete' do
+  @member = params[:name]
+  erb :delete
+end
+
+# Destroy: delete member
+delete '/members/:name' do
+  "todo: delete from file"
+end

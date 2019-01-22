@@ -1,0 +1,8 @@
+Do you really want to remove the member <%= @member %>?
+
+<form action='/members/<%= @member %>' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+  <button type='submit' name='submit'>Remove Member</button>
+</form>
+
+<a href='/members'>Cancel</a>

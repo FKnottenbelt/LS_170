@@ -44,3 +44,20 @@ Next add the edit and update routes:
   succeeds redirect the user to /members/:name and pass a success message
   by using the session. If the validation fails re-render the form and
   display an error message.
+
+## Exercise 5.4
+
+Finally add the delete and destroy routes:
+
+- In the index view add a link “Delete” next to each of the “Edit” links,
+  and point it to /members/:name/delete.
+
+- Also, add the same link to the show.erb view.
+
+- On GET to /members/:name/delete prompt the user for confirmation: “Do
+  you really want to remove the member [name]?”, and add a form that sends
+  a DELETE request to /members/:name, with a button “Remove Member”. Also
+  add a link “Back” that goes to `/members/.
+
+- On DELETE to /members/:name remove the name from the file names.txt, and
+  redirect to /members

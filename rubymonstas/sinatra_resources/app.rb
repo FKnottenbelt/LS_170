@@ -43,13 +43,17 @@ def edit_member(old_name, new_name)
 
   new_content = members.map do |name|
     if name =~ /#{old_name}/
-      name.gsub(old_name, new_name)
+      name.gsub(old_name, new_name).strip
     else
       name
     end
   end.join
 
   write_to_members_file(new_content)
+end
+
+def delete_member(name)
+  edit_member(name, "")
 end
 
 # Index: Display all members
@@ -117,5 +121,6 @@ end
 
 # Destroy: delete member
 delete '/members/:name' do
-  "todo: delete from file"
+  delete_member(params[:name])
+  redirect "/members"
 end

@@ -38,6 +38,14 @@ def valid_name?(name)
     @members.include?(name + "\n"))
 end
 
+def determine_name(old_name, new_name)
+  if name =~ /#{old_name}/
+    name.gsub(old_name, new_name).strip
+  else
+    name
+  end
+end
+
 def edit_member(old_name, new_name)
   members = load_members
 
@@ -54,6 +62,11 @@ end
 
 def delete_member(name)
   edit_member(name, "")
+end
+
+def add_member(name)
+  file = File.join(data_path, 'members.txt')
+  File.write(file, "\n#{name}", mode:'a')
 end
 
 # Index: Display all members
@@ -75,10 +88,10 @@ post '/members' do
   @new_member = params[:name]
 
   if valid_name?(@new_member)
-    file = File.join(data_path, 'members.txt')
-    File.write(file, "\n#{@new_member}", mode:'a')
+    add_member(@new_member)
     session[:message] = "Added #{@new_member}"
     status 204
+
     redirect "/members/#{@new_member}"
   else
     session[:message] = 'Invalid name'
@@ -103,12 +116,14 @@ end
 put '/members/:old_name' do
   if valid_name?(params[:name])
     @name = params[:name]
-    session[:message] = "Changed name to: #{@name}"
     edit_member(params[:old_name], @name)
+    session[:message] = "Changed name to: #{@name}"
+
     redirect "/members/#{@name}"
   else
     session[:message] = 'Invalid name'
     @member = params[:old_name]
+
     erb :edit
   end
 end

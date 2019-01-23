@@ -13,6 +13,7 @@ class AppTest < MiniTest::Test
 
   def setup
     FileUtils.mkdir_p(data_path)
+    create_document('members.txt','Johnny')
   end
 
   def teardown
@@ -24,19 +25,74 @@ class AppTest < MiniTest::Test
     File.write(new_doc, content, mode:'w')
   end
 
-  def test_index_page
-    create_document('members.txt','Johnny')
+  def session
+    last_request.env["rack.session"]
+  end
+
+  ## Index
+  def test_member_index
     get '/'
 
     assert_equal 200, last_response.status
     assert_includes last_response.body, '/Johnny'
   end
 
-  def test_show_page
-    create_document('members.txt','Johnny')
+  ## Show
+  def test_member_show
     get '/members/Johnny'
 
     assert_equal 200, last_response.status
     assert_includes last_response.body, 'Johnny'
   end
+
+  ## New
+  def test_member_new
+    get '/members/new'
+
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, 'Submit'
+  end
+
+  ## Create
+  def test_member_create_valid_member
+    post '/members', name: 'Carl'
+
+    assert_equal 302, last_response.status
+    assert_equal "Added Carl", session[:message]
+  end
+
+  def test_member_create_invalid_member_fails
+    post '/members', name: 'Johnny'
+
+    assert_equal 422, last_response.status
+    assert_includes last_response.body, "Invalid name"
+  end
+
+  ## Edit
+  def test_member_edit
+    get '/members/Johnny/edit'
+
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, 'Submit'
+  end
+
+  ## Update
+  def test_member_update_valid_name
+    put '/members/Johnny', name: 'Johannes'
+
+    assert_equal 302, last_response.status
+    assert_equal "Changed name to: Johannes", session[:message]
+  end
+
+  def test_member_update_invalid_name_fails
+    put '/members/Johnny', name: ''
+
+    assert_equal 422, last_response.status
+    assert_includes last_response.body, "Invalid name"
+  end
+
+  ## Delete
+
+  ## Destroy
+
 end

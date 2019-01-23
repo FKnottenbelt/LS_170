@@ -83,17 +83,17 @@ get '/members/new' do
   erb :new
 end
 
-# New: add new member
+# Create: add new member
 post '/members' do
   @new_member = params[:name]
 
   if valid_name?(@new_member)
     add_member(@new_member)
     session[:message] = "Added #{@new_member}"
-    status 204
 
     redirect "/members/#{@new_member}"
   else
+    status 422
     session[:message] = 'Invalid name'
     erb :new
   end
@@ -121,6 +121,7 @@ put '/members/:old_name' do
 
     redirect "/members/#{@name}"
   else
+    status 422
     session[:message] = 'Invalid name'
     @member = params[:old_name]
 

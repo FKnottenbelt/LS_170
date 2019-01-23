@@ -28,9 +28,28 @@ def load_members
   File.readlines(members_file)
 end
 
+def write_to_members_file(new_content)
+  members_file = File.join(data_path, 'members.txt')
+  File.write(members_file, new_content, mode: 'w')
+end
+
 def valid_name?(name)
   !(name.to_s.empty?  || @members.include?(name) ||
     @members.include?(name + "\n"))
+end
+
+def edit_member(old_name, new_name)
+  members = load_members
+
+  new_content = members.map do |name|
+    if name =~ /#{old_name}/
+      name.gsub(old_name, new_name)
+    else
+      name
+    end
+  end.join
+
+  write_to_members_file(new_content)
 end
 
 # Index: Display all members
@@ -79,8 +98,10 @@ end
 # Update: edit a member
 put '/members/:old_name' do
   if valid_name?(params[:name])
-    session[:message] = "Noted new name: #{params[:name]}"
-    redirect "/members/#{params[:old_name]}"
+    @name = params[:name]
+    session[:message] = "Changed name to: #{@name}"
+    edit_member(params[:old_name], @name)
+    redirect "/members/#{@name}"
   else
     session[:message] = 'Invalid name'
     @member = params[:old_name]

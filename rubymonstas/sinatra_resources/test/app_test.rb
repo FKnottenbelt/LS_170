@@ -92,7 +92,18 @@ class AppTest < MiniTest::Test
   end
 
   ## Delete
+  def test_member_delete
+    get '/members/Johnny/delete'
+
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, 'Remove Member'
+  end
 
   ## Destroy
+  def test_member_destroy
+    delete '/members/Johnny'
 
+    assert_equal 302, last_response.status
+    assert_equal "Deleted Johnny", session[:message]
+  end
 end

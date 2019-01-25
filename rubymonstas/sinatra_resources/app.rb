@@ -138,5 +138,6 @@ end
 # Destroy: delete member
 delete '/members/:name' do
   delete_member(params[:name])
+  session[:message] = "Deleted #{params[:name]}"
   redirect "/members"
 end
